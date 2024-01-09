@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMDb Visualizations</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    
+    body {
+      margin: 0; 
+      font-family: Arial, sans-serif; 
+    }
+
+    #visualization-title {
+      text-align: center;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    #visualization-container {
+      display: flex;
+    }
+
+    #bar-chart-container,
+    #scatterplot-matrix-container,
+    #parallel-coordinates-container {
+      flex-basis: 33%; 
+      margin-right: 10px;
+      margin-bottom: 0px;
+    }
+
+    #time-graph-container {
+    }
+
+    .dot.hidden,
+    .line.hidden {
+      display: none;
+    }
+    .tooltip {
+      position: absolute;
+      text-align: left;
+      padding: 10px;
+      font: 12px sans-serif;
+      background: #f0f0f0;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      pointer-events: none;
+    }
+    #gross-slider {
+      width: 90%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="visualization-title">IMDb Movie Ratings and Sales Dashboard</div>
+  <div id="visualization-container">
+    <div id="parallel-coordinates-container"></div>
+    <div id="time-graph-container"></div>
+    <div id="bar-chart-container"></div>
+    <div id="scatterplot-matrix-container"></div>
+  </div>
+  <div id="slider-container">
+    <label for="gross-slider">Gross Filter:</label>
+    <input type="range" id="gross-slider" min="28000000" max="400000000" step="10000000" value="28000000">
+    <span id="slider-value">28,000,000</span>
+    <script>
+    function updateSliderValue(newValue) {
+      document.getElementById("slider-value").textContent = newValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    </script>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
